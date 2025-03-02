@@ -89,6 +89,7 @@ services:
   GitPi:
     image: leodev12345/gitpi:latest 
     container_name: gitpi
+    user: uid:gid
     ports:
       - 5000:5000
     environment:
@@ -105,6 +106,7 @@ services:
 Example Docker CLI command:
 ```
 docker run -d -p 5000:5000 \
+  --user uid:gid \
   -e PASSWORD="password123" \
   -e STORAGE_PATH="/mnt/raid/gitpi/repos/" \
   -e SERVER_USER="leo" \
@@ -117,11 +119,13 @@ docker run -d -p 5000:5000 \
 
 Port - change it to the port you want to use to access the web UI, default is 5000 (make sure you edit the first number to the port you need and not the second number, the second number must always stay 5000!)
 
+uid:gid - change to the uid of the linux user you want to run the app as and the group id too, you can find those ids with the `id` command
+
 PASSWORD - set it to the password you will use to log in into the web UI
 
 STORAGE_PATH - set it to the path to the dir where all your repositories will be located on the server, it should be the same as the path for the bind mount for the repos directory in the container
 
-SERVER_USER - set this to the username of the linux user you will use to access the git repos over ssh, it will only be shown in the repo path in the web UI. You will use this user to access the git server over ssh when cloning repositories, pushing, etc.
+SERVER_USER - set this to the username of the linux user you will use to access the git repos over ssh, it will only be shown in the repo path in the web UI. You will use this user to access the git server over ssh when cloning repositories, pushing, etc, should be the same user as the user which uid is specified.
 
 HOST_IP - set this to the IP adress of the host server or to the servers domain, it will only be used to display the full path to the repo in the web UI.
 
