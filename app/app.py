@@ -41,7 +41,7 @@ if docker:
         "password": os.environ['PASSWORD'],
         "storage_path": path,
         "server_IP": os.environ['HOST_IP'],
-        "server_user": getpass.getuser(),
+        "server_user": os.environ['SERVER_USER'],
         "app_secret_key": secret_key
     }
 
