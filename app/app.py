@@ -6,6 +6,7 @@ from functools import wraps
 import subprocess
 import string
 import re
+import getpass
 
 # all charecters allowed in repo names
 allowed_charecters = (
@@ -40,7 +41,7 @@ if docker:
         "password": os.environ['PASSWORD'],
         "storage_path": path,
         "server_IP": os.environ['HOST_IP'],
-        "server_user": os.environ['SERVER_USER'],
+        "server_user": getpass.getuser(),
         "app_secret_key": secret_key
     }
 

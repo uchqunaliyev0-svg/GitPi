@@ -2,12 +2,12 @@ services:
   GitPi:
     image: leodev12345/gitpi:latest 
     container_name: gitpi
+    user: uid:gid # Change to your user uid and group gid
     ports:
       - 5000:5000  # Change to the port you want to use for the web ui
     environment:
       PASSWORD: "yourpassword" # Change to the password you want to use for the web ui 
       STORAGE_PATH: "/path/to/repos/" # Change to the path to the dir where your repos are located (on the host)
-      SERVER_USER: "youruser" # Change to the linux username of the user you want to use to access the repos over ssh
       HOST_IP: "example.lan" # Change to the IP adress/domain of your host server 
     volumes:
       - /path/to/database:/app/database  # Change to the location where you want to store the app databse
